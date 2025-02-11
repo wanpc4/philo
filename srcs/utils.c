@@ -46,11 +46,11 @@ long	get_time_ms(void)
 	return (time);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atol(const char *str)
 {
 	int	count;
 	int	sign;
-	int	converter;
+	long long	converter;
 
 	count = 0;
 	sign = 1;
@@ -66,6 +66,10 @@ int	ft_atoi(const char *str)
 	while ((str[count] >= '0') && (str[count] <= '9'))
 	{
 		converter = (converter * 10) + (str[count] - '0');
+		if (sign == 1 && converter > INT_MAX)
+			return (-1);
+		if (sign == -1 && -converter < INT_MIN)
+			return (0);
 		count++;
 	}
 	return (converter * sign);

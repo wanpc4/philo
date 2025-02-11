@@ -22,6 +22,8 @@
 
 # define DELAY 10
 # define WAIT 1000
+# define INT_MAX 2147483647
+# define INT_MIN (-2147483648)
 # define DEBUG "printf"
 
 typedef pthread_mutex_t	t_mutex;
@@ -63,7 +65,7 @@ int		run_sim(t_table *table);
 int		is_end_sim(t_table *table);
 int		is_starving(t_table *table, t_philo *philo);
 int		all_ate_enough(t_table *table);
-int		ft_atoi(const char *str);
+int		ft_atol(const char *str);
 
 void	log_activity(t_table *table, int id, char *msg);
 void	usleep_ms(long ms);
