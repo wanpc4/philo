@@ -14,9 +14,9 @@
 
 void	p_take_forks(t_philo *philo, t_table *table)
 {
-	if (table->num_of_philo == 1 || table->eat_count == 0)
+	if (table->num_of_philo == 1 || table->must_eat_count == 0)
 	{
-		if (table->num_of_philo == 1 && table->eat_count != 0)
+		if (table->num_of_philo == 1 && table->must_eat_count != 0)
 			log_activity(table, philo->id, "has taken a fork");
 		usleep_ms(table->time_to_die);
 		return ;

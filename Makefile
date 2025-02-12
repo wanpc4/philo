@@ -3,31 +3,29 @@ CFLAGS = -Wall -Wextra -Werror -g3
 
 SRC_DIR = srcs
 OBJ_DIR = obj
-INC = -Iinclude
+
+SRC = $(wildcard $(SRC_DIR)/*.c)
+OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+INC = -I.
 LIB = -lpthread
 
 EXE_NAME = philo
 
-SRC = $(wildcard $(SRC_DIR)/*.c) main.c
-OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
+all: $(OBJ)
+	$(CC) $(CFLAGS) $(INC) $(LIB) $(OBJ) main.c -o $(EXE_NAME)
 
-all: $(EXE_NAME)
-
-$(EXE_NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(INC) $(LIB) $(OBJ) -o $(EXE_NAME)
-
-$(OBJ_DIR)/%.o: %.c
-	mkdir -p $(dir $@)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
-fsanMem: $(OBJ)
-	$(CC) $(CFLAGS) $(INC) $(LIB) -fsanitize=address $(OBJ) -o $(EXE_NAME)
+fsanMem:
+	$(CC) $(CFLAGS) $(INC) $(LIB) -fsanitize=address main.c -o $(EXE_NAME) $(OBJ)
 
-fsanThread: $(OBJ)
-	$(CC) $(CFLAGS) $(INC) $(LIB) -fsanitize=thread $(OBJ) -o $(EXE_NAME)
+fsanThread:
+	$(CC) $(CFLAGS) $(INC) $(LIB) -fsanitize=thread main.c -o $(EXE_NAME) $(OBJ)
 
 clean:
-	rm -rf $(OBJ_DIR)
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(EXE_NAME)

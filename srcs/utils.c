@@ -6,7 +6,7 @@
 /*   By: wwan-ab- wwan-ab-@student.42kl.edu.my      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 08:31:36 by wwan-ab-          #+#    #+#             */
-/*   Updated: 2025/02/06 08:37:50 by wwan-ab-         ###   ########.fr       */
+/*   Updated: 2025/02/12 06:57:56 by wwan-ab-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ long	get_time_ms(void)
 	return (time);
 }
 
-int	ft_atol(const char *str)
+int	ft_atoi(const char *str)
 {
-	int	count;
-	int	sign;
-	long long	converter;
+	int			count;
+	int			sign;
+	int			converter;
 
 	count = 0;
 	sign = 1;
@@ -66,10 +66,6 @@ int	ft_atol(const char *str)
 	while ((str[count] >= '0') && (str[count] <= '9'))
 	{
 		converter = (converter * 10) + (str[count] - '0');
-		if (sign == 1 && converter > INT_MAX)
-			return (-1);
-		if (sign == -1 && -converter < INT_MIN)
-			return (0);
 		count++;
 	}
 	return (converter * sign);

@@ -26,16 +26,16 @@ int	validate(int argc, char *argv[])
 	i = 0;
 	while (++i < argc)
 	{
-		if (!is_num(argv[i]) || ft_atol(argv[i]) < 0)
+		if (!is_num(argv[i]) || ft_atoi(argv[i]) < 0)
 		{
 			if (!is_num(argv[i]))
 				printf("Error: arguments must be positive integers\n");
-			else if (ft_atol(argv[i]) < 0)
+			else if (ft_atoi(argv[i]) < 0)
 				printf("Error: integer overflow\n");
 			return (0);
 		}
 	}
-	if (ft_atol(argv[1]) <= 0)
+	if (ft_atoi(argv[1]) <= 0)
 	{
 		printf("Error: number of philosophers must be greater than 0\n");
 		return (0);

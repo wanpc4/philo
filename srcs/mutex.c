@@ -42,14 +42,14 @@ int	all_ate_enough(t_table *table)
 	int	count;
 	int	i;
 
-	if (table->eat_count == -1)
+	if (table->must_eat_count == -1)
 		return (0);
 	count = 0;
 	i = -1;
 	while (++i < table->num_of_philo)
 	{
 		pthread_mutex_lock(&table->philo[i].eat_mutex);
-		if (table->philo[i].eat_count >= table->eat_count)
+		if (table->philo[i].eat_count >= table->must_eat_count)
 			count += 1;
 		pthread_mutex_unlock(&table->philo[i].eat_mutex);
 	}

@@ -14,14 +14,14 @@
 
 int	init(t_table *table, char *argv[])
 {
-	table->num_of_philo = ft_atol(argv[1]);
-	table->time_to_die = ft_atol(argv[2]);
-	table->time_to_eat = ft_atol(argv[3]);
-	table->time_to_sleep = ft_atol(argv[4]);
-	table->eat_count = -1;
+	table->num_of_philo = ft_atoi(argv[1]);
+	table->time_to_die = ft_atoi(argv[2]);
+	table->time_to_eat = ft_atoi(argv[3]);
+	table->time_to_sleep = ft_atoi(argv[4]);
+	table->must_eat_count = -1;
 	table->end_sim = false;
 	if (argv[5])
-		table->eat_count = ft_atol(argv[5]);
+		table->must_eat_count = ft_atoi(argv[5]);
 	pthread_mutex_init(&table->end_mutex, NULL);
 	pthread_mutex_init(&table->log_mutex, NULL);
 	pthread_mutex_init(&table->philo_mutex, NULL);
